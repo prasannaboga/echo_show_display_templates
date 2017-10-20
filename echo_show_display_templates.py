@@ -7,8 +7,8 @@ logger.setLevel(logging.INFO)
 
 
 def handler(event, context):
-  # logger.info("=== event ===")
-  # logger.info(json.dumps(event))
+  logger.info("=== event ===")
+  logger.info(json.dumps(event))
   
   if event['session']['new']:
     print("event['session']['new']")
@@ -411,8 +411,8 @@ def list_template_two(intent, session):
       },
       "textContent": {
         "primaryText": {
-          "text": "PrimaryText 0" + _i,
-          "type": "PlainText"
+          "text": "<action token='LI20" + _i + "'>PrimaryText 0" + _i + "</action>",
+          "type": "RichText"
         },
         "secondaryText": {
           "text": "SecondaryText 0" + _i,
