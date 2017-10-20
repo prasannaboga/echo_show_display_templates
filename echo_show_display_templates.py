@@ -7,8 +7,8 @@ logger.setLevel(logging.INFO)
 
 
 def handler(event, context):
-  #logger.info("=== event ===")
-  #logger.info(json.dumps(event))
+  # logger.info("=== event ===")
+  # logger.info(json.dumps(event))
   
   if event['session']['new']:
     print("event['session']['new']")
@@ -72,12 +72,13 @@ def get_welcome_response():
 
 
 def body_template_one(intent, session):
+  """ Why card response, hint is not coming """
   session_attributes = {}
   speech_response = {'text': 'Body Template One....'}
   card_response = {
     'type': 'Standard',
-    'title': 'Body Template One',
-    'text': 'Body Template One',
+    'title': 'Body Template One Card',
+    'text': 'Body Template One Card',
     'image': {
       'smallImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg',
       'largeImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg'
@@ -105,14 +106,20 @@ def body_template_one(intent, session):
             "type": "PlainText"
           },
           "secondaryText": {
-            "text": "<font size='4'>Body Template secondaryText</font>",
+            "text": '<font size="5">Body Template secondaryText</font>',
             "type": "RichText"
           },
           "tertiaryText": {
-            "text": "Body Template tertiaryText",
-            "type": "PlainText"
+            "text": "<b>Body</b> <i>Template</i> <u>tertiaryText</u>",
+            "type": "RichText"
           }
         }
+      }
+    }, {
+      "type": "Hint",
+      "hint": {
+        "type": "PlainText",
+        "text": "Alexa, body template two.."
       }
     }
   ]
@@ -164,6 +171,7 @@ def body_template_two(intent, session):
   ]
   return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
 
+
 def body_template_three(intent, session):
   session_attributes = {}
   speech_response = {'text': 'Body Template Two....'}
@@ -208,6 +216,7 @@ def body_template_three(intent, session):
     }
   ]
   return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+
 
 def body_template_six(intent, session):
   session_attributes = {}
@@ -299,6 +308,7 @@ def list_template_one(intent, session):
     }
   ]
   return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+
 
 def list_template_two(intent, session):
   session_attributes = {}
