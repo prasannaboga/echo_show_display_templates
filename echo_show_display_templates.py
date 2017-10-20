@@ -129,29 +129,49 @@ def body_template_one(intent, session):
 def body_template_two(intent, session):
   session_attributes = {}
   speech_response = {'text': 'Body Template Two....'}
+  card_response = {
+    'type': 'Standard',
+    'title': 'Body Template Two Card',
+    'text': 'Body Template Two Card',
+    'image': {
+      'smallImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg',
+      'largeImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg'
+    }
+  }
   directives = [
     {
       "type": "Display.RenderTemplate",
       "template": {
-        "type": "BodyTemplate1",
-        "token": "string",
+        "type": "BodyTemplate2",
+        "token": "BT02",
         "backButton": "VISIBLE",
         "backgroundImage": {
-          "contentDescription": "string",
+          "contentDescription": "body_template_two",
           "sources": [
             {
-              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_one.jpg"
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_two_1.jpg"
+            },
+            {
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_two_2.jpg"
             }
           ]
         },
         "title": "Body Template Two",
+        "image": {
+          "contentDescription": "body_template_two",
+          "sources": [
+            {
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_two_1.jpg"
+            }
+          ]
+        },
         "textContent": {
           "primaryText": {
             "text": "Body Template primaryText",
             "type": "PlainText"
           },
           "secondaryText": {
-            "text": "<font size='4'>Body Template secondaryText</font>",
+            "text": "<font size='2'>Body Template secondaryText</font>",
             "type": "RichText"
           },
           "tertiaryText": {
@@ -165,11 +185,11 @@ def body_template_two(intent, session):
       "type": "Hint",
       "hint": {
         "type": "PlainText",
-        "text": "Alexa, say body template three.."
+        "text": "say body template three.."
       }
     }
   ]
-  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+  return build_response(session_attributes, build_speechlet_response(speech_response, card_response, directives))
 
 
 def body_template_three(intent, session):
