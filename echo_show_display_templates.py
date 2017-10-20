@@ -7,8 +7,8 @@ logger.setLevel(logging.INFO)
 
 
 def handler(event, context):
-  logger.debug("=== event ===")
-  logger.debug(json.dumps(event))
+  #logger.info("=== event ===")
+  #logger.info(json.dumps(event))
   
   if event['session']['new']:
     print("event['session']['new']")
@@ -29,7 +29,7 @@ def on_launch(launch_request, session):
 def on_intent(intent_request, session):
   intent = intent_request['intent']
   intent_name = intent_request['intent']['name']
-
+  
   if intent_name == "DesignTemplate":
     return get_welcome_response()
   elif intent_name == "BodyTemplateOne":
@@ -96,16 +96,9 @@ def body_template_one(intent, session):
           }
         }
       }
-    },
-    {
-      "type": "Hint",
-      "hint": {
-        "type": "PlainText",
-        "text": "Alexa, say body template two.."
-      }
     }
   ]
-  return build_response(session_attributes, build_speechlet_response(speech_response, directives))
+  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
 
 
 def body_template_two(intent, session):
@@ -151,7 +144,188 @@ def body_template_two(intent, session):
       }
     }
   ]
-  return build_response(session_attributes, build_speechlet_response(speech_response, directives))
+  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+
+def body_template_three(intent, session):
+  session_attributes = {}
+  speech_response = {'text': 'Body Template Two....'}
+  directives = [
+    {
+      "type": "Display.RenderTemplate",
+      "template": {
+        "type": "BodyTemplate1",
+        "token": "string",
+        "backButton": "VISIBLE",
+        "backgroundImage": {
+          "contentDescription": "string",
+          "sources": [
+            {
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_one.jpg"
+            }
+          ]
+        },
+        "title": "Body Template Two",
+        "textContent": {
+          "primaryText": {
+            "text": "Body Template primaryText",
+            "type": "PlainText"
+          },
+          "secondaryText": {
+            "text": "<font size='4'>Body Template secondaryText</font>",
+            "type": "RichText"
+          },
+          "tertiaryText": {
+            "text": "Body Template tertiaryText",
+            "type": "PlainText"
+          }
+        }
+      }
+    },
+    {
+      "type": "Hint",
+      "hint": {
+        "type": "PlainText",
+        "text": "Alexa, say body template three.."
+      }
+    }
+  ]
+  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+
+def body_template_six(intent, session):
+  session_attributes = {}
+  speech_response = {'text': 'Body Template Six....'}
+  directives = [
+    {
+      "type": "Display.RenderTemplate",
+      "template": {
+        "type": "BodyTemplate6",
+        "token": "Template6",
+        "backButton": "VISIBLE",
+        "backgroundImage": {
+          "contentDescription": "string",
+          "sources": [
+            {
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_six.jpg"
+            }
+          ]
+        },
+        "title": "Body Template Six",
+        "textContent": {
+          "primaryText": {
+            "text": "Body Template primaryText",
+            "type": "PlainText"
+          },
+          "secondaryText": {
+            "text": "Body Template secondaryText",
+            "type": "PlainText"
+          },
+          "tertiaryText": {
+            "text": "Body Template tertiaryText",
+            "type": "PlainText"
+          }
+        }
+      }
+    },
+    {
+      "type": "Hint",
+      "hint": {
+        "type": "PlainText",
+        "text": "Alexa, say body template one.."
+      }
+    }
+  ]
+  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+
+
+def list_template_one(intent, session):
+  session_attributes = {}
+  speech_response = {'text': 'Body Template Two....'}
+  directives = [
+    {
+      "type": "Display.RenderTemplate",
+      "template": {
+        "type": "BodyTemplate1",
+        "token": "string",
+        "backButton": "VISIBLE",
+        "backgroundImage": {
+          "contentDescription": "string",
+          "sources": [
+            {
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_one.jpg"
+            }
+          ]
+        },
+        "title": "Body Template Two",
+        "textContent": {
+          "primaryText": {
+            "text": "Body Template primaryText",
+            "type": "PlainText"
+          },
+          "secondaryText": {
+            "text": "<font size='4'>Body Template secondaryText</font>",
+            "type": "RichText"
+          },
+          "tertiaryText": {
+            "text": "Body Template tertiaryText",
+            "type": "PlainText"
+          }
+        }
+      }
+    },
+    {
+      "type": "Hint",
+      "hint": {
+        "type": "PlainText",
+        "text": "Alexa, say body template three.."
+      }
+    }
+  ]
+  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+
+def list_template_two(intent, session):
+  session_attributes = {}
+  speech_response = {'text': 'Body Template Two....'}
+  directives = [
+    {
+      "type": "Display.RenderTemplate",
+      "template": {
+        "type": "BodyTemplate1",
+        "token": "string",
+        "backButton": "VISIBLE",
+        "backgroundImage": {
+          "contentDescription": "string",
+          "sources": [
+            {
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_one.jpg"
+            }
+          ]
+        },
+        "title": "Body Template Two",
+        "textContent": {
+          "primaryText": {
+            "text": "Body Template primaryText",
+            "type": "PlainText"
+          },
+          "secondaryText": {
+            "text": "<font size='4'>Body Template secondaryText</font>",
+            "type": "RichText"
+          },
+          "tertiaryText": {
+            "text": "Body Template tertiaryText",
+            "type": "PlainText"
+          }
+        }
+      }
+    },
+    {
+      "type": "Hint",
+      "hint": {
+        "type": "PlainText",
+        "text": "Alexa, say body template three.."
+      }
+    }
+  ]
+  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
 
 
 def build_speechlet_response(speech_response, card_response={}, directives=[], reprompt_text=None,
