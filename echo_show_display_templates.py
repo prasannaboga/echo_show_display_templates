@@ -194,23 +194,40 @@ def body_template_two(intent, session):
 
 def body_template_three(intent, session):
   session_attributes = {}
-  speech_response = {'text': 'Body Template Two....'}
+  speech_response = {'text': 'Body Template Three....'}
+  card_response = {
+    'type': 'Standard',
+    'title': 'Body Template Three Card',
+    'text': 'Body Template Three Card',
+    'image': {
+      'smallImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg',
+      'largeImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg'
+    }
+  }
   directives = [
     {
       "type": "Display.RenderTemplate",
       "template": {
-        "type": "BodyTemplate1",
-        "token": "string",
+        "type": "BodyTemplate3",
+        "token": "BT03",
         "backButton": "VISIBLE",
         "backgroundImage": {
-          "contentDescription": "string",
+          "contentDescription": "body_template_three",
           "sources": [
             {
-              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_one.jpg"
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_three.jpg"
             }
           ]
         },
-        "title": "Body Template Two",
+        "title": "Body Template Three",
+        "image": {
+          "contentDescription": "body_template_three",
+          "sources": [
+            {
+              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_three.jpg"
+            }
+          ]
+        },
         "textContent": {
           "primaryText": {
             "text": "Body Template primaryText",
@@ -231,11 +248,11 @@ def body_template_three(intent, session):
       "type": "Hint",
       "hint": {
         "type": "PlainText",
-        "text": "Alexa, say body template three.."
+        "text": "say body template six.."
       }
     }
   ]
-  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+  return build_response(session_attributes, build_speechlet_response(speech_response, card_response, directives))
 
 
 def body_template_six(intent, session):
