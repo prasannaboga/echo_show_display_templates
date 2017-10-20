@@ -119,7 +119,7 @@ def body_template_one(intent, session):
       "type": "Hint",
       "hint": {
         "type": "PlainText",
-        "text": "Alexa, body template two.."
+        "text": "body template two.."
       }
     }
   ]
@@ -303,7 +303,7 @@ def body_template_six(intent, session):
       "type": "Hint",
       "hint": {
         "type": "PlainText",
-        "text": "Alexa, say body template one.."
+        "text": "say body template one.."
       }
     }
   ]
@@ -376,7 +376,7 @@ def list_template_one(intent, session):
       "type": "Hint",
       "hint": {
         "type": "PlainText",
-        "text": "Alexa, say list template two.."
+        "text": "say list template two.."
       }
     }
   ]
@@ -434,14 +434,14 @@ def list_template_two(intent, session):
         "token": "LT02",
         "backButton": "VISIBLE",
         "backgroundImage": {
-          "contentDescription": "list_template_one",
+          "contentDescription": "list_template_two",
           "sources": [
             {
-              "url": "https://s3.amazonaws.com/the-shire/alexa/list_template_one.jpg"
+              "url": "https://s3.amazonaws.com/the-shire/alexa/list_template_two.jpg"
             }
           ]
         },
-        "title": "List Template One",
+        "title": "List Template Two",
         "listItems": list_items
       }
     },
@@ -449,7 +449,7 @@ def list_template_two(intent, session):
       "type": "Hint",
       "hint": {
         "type": "PlainText",
-        "text": "Alexa, say list template one.."
+        "text": "say list template one.."
       }
     }
   ]
