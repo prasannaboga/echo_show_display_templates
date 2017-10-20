@@ -29,6 +29,7 @@ def on_launch(launch_request, session):
 def on_intent(intent_request, session):
   intent = intent_request['intent']
   intent_name = intent_request['intent']['name']
+  logger.info(" ** intent_name ** " + intent_name)
   
   if intent_name == "DesignTemplate":
     return get_welcome_response()
@@ -36,6 +37,14 @@ def on_intent(intent_request, session):
     return body_template_one(intent, session)
   elif intent_name == "BodyTemplateTwo":
     return body_template_two(intent, session)
+  elif intent_name == "BodyTemplateThree":
+    return body_template_three(intent, session)
+  elif intent_name == "BodyTemplateSix":
+    return body_template_six(intent, session)
+  elif intent_name == "ListTemplateOne":
+    return list_template_one(intent, session)
+  elif intent_name == "ListTemplateTwo":
+    return list_template_two(intent, session)
   elif intent_name == "AMAZON.HelpIntent":
     return get_welcome_response()
   else:
@@ -65,15 +74,24 @@ def get_welcome_response():
 def body_template_one(intent, session):
   session_attributes = {}
   speech_response = {'text': 'Body Template One....'}
+  card_response = {
+    'type': 'Standard',
+    'title': 'Body Template One',
+    'text': 'Body Template One',
+    'image': {
+      'smallImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg',
+      'largeImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg'
+    }
+  }
   directives = [
     {
       "type": "Display.RenderTemplate",
       "template": {
         "type": "BodyTemplate1",
-        "token": "string",
+        "token": "BT01",
         "backButton": "VISIBLE",
         "backgroundImage": {
-          "contentDescription": "string",
+          "contentDescription": "body_template_one",
           "sources": [
             {
               "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_one.jpg"
@@ -98,7 +116,7 @@ def body_template_one(intent, session):
       }
     }
   ]
-  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+  return build_response(session_attributes, build_speechlet_response(speech_response, card_response, directives))
 
 
 def body_template_two(intent, session):
