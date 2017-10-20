@@ -312,48 +312,75 @@ def body_template_six(intent, session):
 
 def list_template_one(intent, session):
   session_attributes = {}
-  speech_response = {'text': 'Body Template Two....'}
+  speech_response = {'text': 'List Template One....'}
+  card_response = {
+    'type': 'Standard',
+    'title': 'List Template One Card',
+    'text': 'List Template One Card',
+    'image': {
+      'smallImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg',
+      'largeImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg'
+    }
+  }
+  
+  list_items = []
+  for i in range(1, 6):
+    _i = str(i)
+    item = {
+      "token": "LI0"+_i,
+      "image": {
+        "contentDescription": "LI0"+_i,
+        "sources": [
+          {
+            "url": "https://s3.amazonaws.com/the-shire/alexa/00{}.jpg".format(_i)
+          }
+        ]
+      },
+      "textContent": {
+        "primaryText": {
+          "text": "PrimaryText 0"+_i,
+          "type": "PlainText"
+        },
+        "secondaryText": {
+          "text": "SecondaryText 0"+_i,
+          "type": "PlainText"
+        },
+        "tertiaryText": {
+          "text": "TertiaryText 0"+_i,
+          "type": "PlainText"
+        }
+      }
+    }
+    list_items.append(item)
+  
   directives = [
     {
       "type": "Display.RenderTemplate",
       "template": {
-        "type": "BodyTemplate1",
-        "token": "string",
+        "type": "ListTemplate1",
+        "token": "LT01",
         "backButton": "VISIBLE",
         "backgroundImage": {
-          "contentDescription": "string",
+          "contentDescription": "list_template_one",
           "sources": [
             {
-              "url": "https://s3.amazonaws.com/the-shire/alexa/body_template_one.jpg"
+              "url": "https://s3.amazonaws.com/the-shire/alexa/list_template_one.jpg"
             }
           ]
         },
-        "title": "Body Template Two",
-        "textContent": {
-          "primaryText": {
-            "text": "Body Template primaryText",
-            "type": "PlainText"
-          },
-          "secondaryText": {
-            "text": "<font size='4'>Body Template secondaryText</font>",
-            "type": "RichText"
-          },
-          "tertiaryText": {
-            "text": "Body Template tertiaryText",
-            "type": "PlainText"
-          }
-        }
+        "title": "List Template One",
+        "listItems": list_items
       }
     },
     {
       "type": "Hint",
       "hint": {
         "type": "PlainText",
-        "text": "Alexa, say body template three.."
+        "text": "Alexa, say list template two.."
       }
     }
   ]
-  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+  return build_response(session_attributes, build_speechlet_response(speech_response, card_response, directives))
 
 
 def list_template_two(intent, session):
