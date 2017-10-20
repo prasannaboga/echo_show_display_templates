@@ -258,6 +258,15 @@ def body_template_three(intent, session):
 def body_template_six(intent, session):
   session_attributes = {}
   speech_response = {'text': 'Body Template Six....'}
+  card_response = {
+    'type': 'Standard',
+    'title': 'Body Template Six Card',
+    'text': 'Body Template Six Card',
+    'image': {
+      'smallImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg',
+      'largeImageUrl': 'https://s3.amazonaws.com/the-shire/alexa/welcome_001.jpg'
+    }
+  }
   directives = [
     {
       "type": "Display.RenderTemplate",
@@ -298,7 +307,7 @@ def body_template_six(intent, session):
       }
     }
   ]
-  return build_response(session_attributes, build_speechlet_response(speech_response, {}, directives))
+  return build_response(session_attributes, build_speechlet_response(speech_response, card_response, directives))
 
 
 def list_template_one(intent, session):
